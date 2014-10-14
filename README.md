@@ -21,6 +21,6 @@ The Kata says you should write a function to convert from Roman Numerals to deci
 <br>When smaller values precede larger values, the smaller values are subtracted from the larger values, and the result is added to the total.
 <br>
 <br>Example:
-<br>Roman Number	Computation	                                Value	    Comment
-<br>MMVI	        1000 + 1000 + 5 + 1	                        2006	    only addition
-<br>MCMXLIV	      1000 + (1000 - 100) + (50 - 10) + (5 - 1)	  1944	    addition and substraction
+<br>Roman Number  Computation                                 Value     Comment
+<br>MMVI          1000 + 1000 + 5 + 1                         2006      only addition
+<br>MCMXLIV       1000 + (1000 - 100) + (50 - 10) + (5 - 1)   1944      addition and substraction
