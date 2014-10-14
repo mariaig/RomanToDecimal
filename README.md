@@ -15,13 +15,12 @@ The Kata says you should write a function to convert from Roman Numerals to deci
 <br>C	100
 <br>D	500
 <br>M	1000
-
-
-Numbers are formed by combining symbols together and adding the values. 
-Generally, symbols are placed in order of value, starting with the largest values. 
-When smaller values precede larger values, the smaller values are subtracted from the larger values, and the result is added to the total.
-
-Example:
-Roman Number	Computation	                                Value	    Comment
-MMVI	        1000 + 1000 + 5 + 1	                        2006	    only addition
-MCMXLIV	      1000 + (1000 - 100) + (50 - 10) + (5 - 1)	  1944	    addition and substraction
+<br>
+<br>Numbers are formed by combining symbols together and adding the values. 
+<br>Generally, symbols are placed in order of value, starting with the largest values. 
+<br>When smaller values precede larger values, the smaller values are subtracted from the larger values, and the result is added to the total.
+<br>
+<br>Example:
+<br>Roman Number	Computation	                                Value	    Comment
+<br>MMVI	        1000 + 1000 + 5 + 1	                        2006	    only addition
+<br>MCMXLIV	      1000 + (1000 - 100) + (50 - 10) + (5 - 1)	  1944	    addition and substraction
