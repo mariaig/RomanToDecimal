@@ -20,7 +20,13 @@ The Kata says you should write a function to convert from Roman Numerals to deci
 <br>Generally, symbols are placed in order of value, starting with the largest values. 
 <br>When smaller values precede larger values, the smaller values are subtracted from the larger values, and the result is added to the total.
 <br>
-<br>Example:
-<br>Roman Number  Computation                                 Value     Comment
-<br>MMVI          1000 + 1000 + 5 + 1                         2006      only addition
-<br>MCMXLIV       1000 + (1000 - 100) + (50 - 10) + (5 - 1)   1944      addition and substraction
+<br>-----------------------------------------------------------------
+<br>Example1:
+<br>Roman Number: MMV
+<br>Computation: 1000 + 1000 + 5 + 1 
+<br>Value: 2006
+<br>
+<br>Example1:
+<br>Roman Number: MCMXLIV
+<br>Computation: 1000 + (1000 - 100) + (50 - 10) + (5 - 1)
+<br>Value: 1944
