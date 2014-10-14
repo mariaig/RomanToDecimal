@@ -26,7 +26,8 @@ public class RomanToDecimal {
    
    
    /*
-        I want to work with this function without having an instance of RomanToDecimal class
+        Static because I want to work with this function 
+        without having an instance of RomanToDecimal class
    */
    public static int parseInput(String romanNumber){
        
