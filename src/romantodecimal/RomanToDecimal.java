@@ -30,7 +30,7 @@ public class RomanToDecimal {
        }
        
        //the roman number will pe processed from right to left so
-       //I have to save the previous letter in case of substract operation
+       //I have to save the previous letter in case of a substract operation
        char previousLetter=romanNumber.charAt(romanNumber.length()-1);
        int decimalNumber=symbols.get(previousLetter+"");
        
