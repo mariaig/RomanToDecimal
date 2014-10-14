@@ -8,7 +8,9 @@ import java.util.HashMap;
  */
 public class RomanToDecimal {
 
-   private final HashMap<String,Integer> symbols=new HashMap();
+    //pairs such as (I,1),(V,5) etc will be saved in a hashmap where key is the roman number
+    //and value is the decimal number 
+   private HashMap<String,Integer> symbols=new HashMap();
 
     public RomanToDecimal() {
         symbols.put("I",1);
