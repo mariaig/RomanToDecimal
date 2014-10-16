@@ -68,7 +68,7 @@ public class RomanToDecimal {
 
         currentLetter = nxtLetter;
         for (int j = 2; j < nr.length(); j++) {
-            nxtLetter = nr.charAt(j++);
+            nxtLetter = nr.charAt(j);
             int max2 = 0;
             if (symbols.get(currentLetter + "") < symbols.get(nxtLetter + "")) {
                 max2 = symbols.get(nxtLetter + "");
@@ -76,6 +76,8 @@ public class RomanToDecimal {
                     throw new InvalidNumber();
                 }
                 vector[index(nxtLetter)] = 1;
+            }else{
+                max2=symbols.get(currentLetter+"");
             }
             if (max2 > maxLeter) {
                 throw new InvalidNumber();
@@ -106,7 +108,7 @@ public class RomanToDecimal {
         int decimalNr = symbols.get(prevLetter + "");
 
         String curLetter;
-        int j = romanNr.length() - 1;
+        int j = romanNr.length() - 2;
         while (j >= 0) {
 
             curLetter = romanNr.charAt(j) + "";
