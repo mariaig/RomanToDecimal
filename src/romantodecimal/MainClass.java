@@ -3,6 +3,8 @@ package romantodecimal;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,6 +28,8 @@ public class MainClass {
         } catch (IOException io) {
             io.printStackTrace();
             System.exit(3);
+        } catch (InvalidNrOfCharacters ex) {
+            System.exit(4);
         }
         //String pathToFile="romanNumbers.txt";   //path to a file where you have the roman numbers
         //FileInputStream inputStream=null;  
