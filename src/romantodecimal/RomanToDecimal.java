@@ -20,38 +20,51 @@ public class RomanToDecimal {
         put("C",100);
         put("D",500);
         put("M",1000);
+        put("E",5000);
        }    
    };
    
    
-   
+   private static void checkIfIsValid(String character) throws InvalidCharacterException{
+       if(symbols.get(character)==null){
+           throw new InvalidCharacterException();
+       }
+   }
    /*
         Static because I want to work with this function 
         without having an instance of RomanToDecimal class
    */
-   public static int parseInput(String romanNumber){
+   public static int parseInput(String romanNumber) throws InvalidCharacterException{
        
        if(romanNumber.length()==1){
            //if the length is 1, you just have to return the value
+           checkIfIsValid(romanNumber);
            return symbols.get(romanNumber);
        }
        
        //the roman number will pe processed from right to left so
        //I have to save the previous letter in case of a subtract operation
-       char previousLetter=romanNumber.charAt(romanNumber.length()-1);
-       int decimalNumber=symbols.get(previousLetter+"");
+       String previousLetter=romanNumber.charAt(romanNumber.length()-1)+"";
+       checkIfIsValid(previousLetter);
        
+       int decimalNumber = symbols.get(previousLetter+"");
+       
+       String currentLetter;
        int i=romanNumber.length()-2;
        while(i>=0){
-           if(symbols.get(romanNumber.charAt(i)+"")<symbols.get(previousLetter+"")){
+           
+           currentLetter=romanNumber.charAt(i)+"";
+           checkIfIsValid(currentLetter);
+           
+           if(symbols.get(currentLetter)<symbols.get(previousLetter)){
                //when smaller values precede larger values, 
                //the smaller values are subtracted from the larger values
-               decimalNumber-=symbols.get(romanNumber.charAt(i)+"");
+               decimalNumber-=symbols.get(currentLetter);
            }else{
                //otherwise, they are added to the total
-               decimalNumber+=symbols.get(romanNumber.charAt(i)+"");
+               decimalNumber+=symbols.get(currentLetter);
            }
-           previousLetter=romanNumber.charAt(i);
+           previousLetter=romanNumber.charAt(i)+"";
            i--;
        }
        return decimalNumber;
