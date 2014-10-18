@@ -17,7 +17,7 @@ public class RomanToDecimal {
     private static final HashMap<String, Integer> symbols = new HashMap<String, Integer>() {
         {
             put("M", 1000);
-            put("E", 5000);
+           // put("E", 5000);
             put("D", 500);
             put("C", 100);
             put("L", 50);
@@ -44,8 +44,8 @@ public class RomanToDecimal {
                 return 5;
             case 'M':
                 return 6;
-            case 'E':
-                return 7;
+           //case 'E':
+            //    return 7;
         }
         return -1;
     }
@@ -65,9 +65,9 @@ public class RomanToDecimal {
     }
 
     public static char convertFromString(String s) {
-        if (s.contains("E")) {
-            return 'E';
-        }
+       // if (s.contains("E")) {
+       //     return 'E';
+        //}
         if (s.contains("M")) {
             return 'M';
         }
@@ -159,6 +159,7 @@ public class RomanToDecimal {
         //the roman number will pe processed from right to left so
         //I have to save the previous letter in case of a subtract operation
         String prevLetter = romanNr.charAt(romanNr.length() - 1) + "";
+        
         if (!disableSyntax) {
             checkIfIsValid(prevLetter);
         }

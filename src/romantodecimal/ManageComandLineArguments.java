@@ -28,5 +28,6 @@ public class ManageComandLineArguments {
                 System.err.println("Usage: -t, --type <STRICT | RELAXED>");
             }
         }
+        
     }
 }
