@@ -65,14 +65,11 @@ public class RomanToDecimal {
     public static void checkSubstractions(String romanNr) throws InvalidNumber{
         
         String prevLetter = romanNr.charAt(romanNr.length() - 1) + "";
-        //Float decimalNr = symbols.get(prevLetter + "");
         String curLetter;
         int j = romanNr.length() - 2;
         while (j >= 0) {
             curLetter = romanNr.charAt(j) + "";
             if (symbols.get(curLetter) < symbols.get(prevLetter)) {
-                //when smaller values precede larger values, 
-                //the smaller values are subtracted from the larger values
                 if (!disableSyntax) {
                     checkValidSubstraction(curLetter, prevLetter);
                 }
