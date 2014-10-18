@@ -7,10 +7,9 @@ import java.util.HashMap;
  * @author Maria
  */
 public class RomanToDecimal {
-
-    private static int[] letterCounter = new int[8];
+    private static final int nrOfSymbols=9;
+    private static int[] letterCounter = new int[nrOfSymbols];
     private static boolean disableSyntax = false;
-    
 
     //pairs such as (I,1),(V,5) etc will be saved in a hashmap where
     //          key is the roman number
@@ -26,17 +25,19 @@ public class RomanToDecimal {
             put("V", 5f);
             put("I", 1f);
             
-            put("S",1/2f);
-            put("*",1/12f);
+            put("S", 1 / 2f);
+            put("*", 1 / 12f);
 
         }
     };
 
-    private static void checkIfIsValid(String character) throws InvalidCharacterException, InvalidNrOfCharacters {
-        if (symbols.get(character) == null) {
-            throw new InvalidCharacterException();
-        }
-        checkNrOfOccurences(convertFromString(character));
+    public static void checkIfIsValid(String romanNumber) throws InvalidCharacterException, InvalidNrOfCharacters {
+        for (int i=0;i<romanNumber.length();i++) {
+            if (symbols.get(romanNumber.charAt(i)+"") == null) {
+                throw new InvalidCharacterException();
+            }
+            checkNrOfOccurences(romanNumber.charAt(i));
+        }  
     }
 
     private static void checkNrOfOccurences(char c) throws InvalidNrOfCharacters {
@@ -46,7 +47,7 @@ public class RomanToDecimal {
         }
     }
 
-    public static void checkValidSubstraction(String s1, String s2) throws InvalidNumber {
+    private static void checkValidSubstraction(String s1, String s2) throws InvalidNumber {
         int indexPrevChar = index(convertFromString(s2));
         int indexCurChar = index(convertFromString(s1));
 
@@ -61,7 +62,26 @@ public class RomanToDecimal {
         }
     }
 
-    private static void checkRomanNumber(String nr) throws InvalidNumber, InvalidNrOfCharacters {
+    public static void checkSubstractions(String romanNr) throws InvalidNumber{
+        
+        String prevLetter = romanNr.charAt(romanNr.length() - 1) + "";
+        //Float decimalNr = symbols.get(prevLetter + "");
+        String curLetter;
+        int j = romanNr.length() - 2;
+        while (j >= 0) {
+            curLetter = romanNr.charAt(j) + "";
+            if (symbols.get(curLetter) < symbols.get(prevLetter)) {
+                //when smaller values precede larger values, 
+                //the smaller values are subtracted from the larger values
+                if (!disableSyntax) {
+                    checkValidSubstraction(curLetter, prevLetter);
+                }
+            } 
+            prevLetter = romanNr.charAt(j--) + "";
+        }
+    }
+    public static void checkRomanNumber(String nr) throws InvalidNumber, InvalidNrOfCharacters {
+        
         int[] vector = new int[symbols.size()];
         char currentLetter = nr.charAt(0);
         char nxtLetter = nr.charAt(1);
@@ -77,7 +97,7 @@ public class RomanToDecimal {
         currentLetter = nxtLetter;
         for (int j = 2; j < nr.length(); j++) {
             nxtLetter = nr.charAt(j);
-            Float max2 ;
+            Float max2;
             if (symbols.get(currentLetter + "") < symbols.get(nxtLetter + "")) {
                 max2 = symbols.get(nxtLetter + "");
                 if (vector[index(nxtLetter)] == 1) {
@@ -101,7 +121,6 @@ public class RomanToDecimal {
      */
 
     public static Float parseInput(String romanNr) throws InvalidCharacterException, InvalidNumber, InvalidNrOfCharacters {
-        System.out.println("--->HERE");
         if (romanNr.length() == 1) {
             //if the length is 1, you just have to return the value
             if (!disableSyntax) {
@@ -109,40 +128,31 @@ public class RomanToDecimal {
             }
             return symbols.get(romanNr);
         }
-
+        
+        if (!disableSyntax) {
+            checkIfIsValid(romanNr);
+            checkRomanNumber(romanNr);
+            checkSubstractions(romanNr);
+        }
+        
+        
         //the roman number will pe processed from right to left so
         //I have to save the previous letter in case of a subtract operation
         String prevLetter = romanNr.charAt(romanNr.length() - 1) + "";
-
-        if (!disableSyntax) {
-            checkIfIsValid(prevLetter);
-        }
         Float decimalNr = symbols.get(prevLetter + "");
-
         String curLetter;
         int j = romanNr.length() - 2;
         while (j >= 0) {
-
             curLetter = romanNr.charAt(j) + "";
-            if (!disableSyntax) {
-                checkIfIsValid(curLetter);
-            }
             if (symbols.get(curLetter) < symbols.get(prevLetter)) {
                 //when smaller values precede larger values, 
                 //the smaller values are subtracted from the larger values
-                if (!disableSyntax) {
-                    checkValidSubstraction(curLetter, prevLetter);
-                }
-
                 decimalNr -= symbols.get(curLetter);
             } else {
                 //otherwise, they are added to the total
                 decimalNr += symbols.get(curLetter);
             }
             prevLetter = romanNr.charAt(j--) + "";
-        }
-        if (!disableSyntax) {
-            checkRomanNumber(romanNr);
         }
         return decimalNr;
     }
@@ -201,7 +211,7 @@ public class RomanToDecimal {
                 return 7;
             case 'M':
                 return 8;
-            
+
             //case 'E':
             //    return 7;
         }

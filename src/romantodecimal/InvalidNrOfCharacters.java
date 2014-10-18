@@ -12,7 +12,10 @@ package romantodecimal;
 class InvalidNrOfCharacters extends Exception {
 
     public InvalidNrOfCharacters() {
+
+    }
+
+    public static void showException() {
         System.err.println("More the 3 letters of the same kind.");
     }
-    
 }

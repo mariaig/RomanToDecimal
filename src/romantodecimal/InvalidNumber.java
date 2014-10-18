@@ -10,8 +10,12 @@ package romantodecimal;
  * @author Maria
  */
 class InvalidNumber extends Exception {
-   InvalidNumber(){
-       System.err.println("The syntax of the roman number is not valid.");
-   }
-    
+
+    InvalidNumber() {
+
+    }
+
+    public static void showException() {
+        System.err.println("The syntax of the roman number is not valid.");
+    }
 }

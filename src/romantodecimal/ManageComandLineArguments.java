@@ -1,5 +1,11 @@
 package romantodecimal;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Maria
@@ -28,6 +34,31 @@ public class ManageComandLineArguments {
                 System.err.println("Usage: -t, --type <STRICT | RELAXED>");
             }
         }
-        
+
+        if (args[0].equals("-c") || args[0].equals("--check")) {
+            if (args.length == 1) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                System.out.println("Please introduce a roman number:");
+                try {
+                    String romanNumber = br.readLine();
+                    RomanToDecimal.checkIfIsValid(romanNumber);
+                    RomanToDecimal.checkRomanNumber(romanNumber);
+                    if(romanNumber.length()>1){
+                        RomanToDecimal.checkSubstractions(romanNumber);
+                    }
+                    System.out.println("valid");
+                    System.exit(0);
+                } catch (InvalidCharacterException | InvalidNrOfCharacters | InvalidNumber ex) {
+                    System.out.println("invalid");
+                    System.exit(0);
+                }  catch (IOException io) {
+                    //io.printStackTrace();
+                    System.exit(1);
+                } 
+            } else {
+                System.err.println("Usage: -c, --check ");
+            }
+        }
+
     }
 }

@@ -12,6 +12,10 @@ package romantodecimal;
 public class InvalidCharacterException extends Exception{
 
     public InvalidCharacterException() {
+        
+    }
+    
+    public static void showException(){
         System.err.println("The string contains an invalid character");
     }
     

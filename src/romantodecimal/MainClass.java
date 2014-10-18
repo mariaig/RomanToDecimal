@@ -13,6 +13,7 @@ public class MainClass {
     public static void main(String[] args) {
 
         ManageComandLineArguments.manageArguments(args);
+        
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please introduce a roman number:");
 
@@ -21,13 +22,16 @@ public class MainClass {
             System.out.println(romanNumber + " as decimal is: " + RomanToDecimal.parseInput(romanNumber));
             System.exit(0);
         } catch (InvalidCharacterException ex) {
+            InvalidCharacterException.showException();
             System.exit(1);
         } catch (InvalidNumber e) {
+            InvalidNumber.showException();
             System.exit(2);
         } catch (IOException io) {
             io.printStackTrace();
             System.exit(3);
         } catch (InvalidNrOfCharacters ex) {
+            InvalidNrOfCharacters.showException();
             System.exit(4);
         }
         //String pathToFile="romanNumbers.txt";   //path to a file where you have the roman numbers
