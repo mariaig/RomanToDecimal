@@ -9,6 +9,7 @@ import java.util.HashMap;
 public class RomanToDecimal {
 
     private static int[] letterCounter = new int[8];
+    private static boolean disableSyntax = false;
 
     //pairs such as (I,1),(V,5) etc will be saved in a hashmap where
     //          key is the roman number
@@ -110,7 +111,7 @@ public class RomanToDecimal {
         int[] vector = new int[symbols.size()];
         char currentLetter = nr.charAt(0);
         char nxtLetter = nr.charAt(1);
-        
+
         int maxLeter;
         if (symbols.get(currentLetter + "") < symbols.get(nxtLetter + "")) {
             maxLeter = symbols.get(nxtLetter + "");
@@ -149,15 +150,18 @@ public class RomanToDecimal {
 
         if (romanNr.length() == 1) {
             //if the length is 1, you just have to return the value
-            checkIfIsValid(romanNr);
+            if (!disableSyntax) {
+                checkIfIsValid(romanNr);
+            }
             return symbols.get(romanNr);
         }
 
         //the roman number will pe processed from right to left so
         //I have to save the previous letter in case of a subtract operation
         String prevLetter = romanNr.charAt(romanNr.length() - 1) + "";
-        checkIfIsValid(prevLetter);
-
+        if (!disableSyntax) {
+            checkIfIsValid(prevLetter);
+        }
         int decimalNr = symbols.get(prevLetter + "");
 
         String curLetter;
@@ -165,12 +169,16 @@ public class RomanToDecimal {
         while (j >= 0) {
 
             curLetter = romanNr.charAt(j) + "";
-            checkIfIsValid(curLetter);
-
+            if (!disableSyntax) {
+                checkIfIsValid(curLetter);
+            }
             if (symbols.get(curLetter) < symbols.get(prevLetter)) {
                 //when smaller values precede larger values, 
                 //the smaller values are subtracted from the larger values
-                checkValidSubstraction(curLetter, prevLetter);
+                if (!disableSyntax) {
+                    checkValidSubstraction(curLetter, prevLetter);
+                }
+                
                 decimalNr -= symbols.get(curLetter);
             } else {
                 //otherwise, they are added to the total
@@ -178,8 +186,17 @@ public class RomanToDecimal {
             }
             prevLetter = romanNr.charAt(j--) + "";
         }
-        checkRomanNumber(romanNr);
+        if (!disableSyntax) {
+            checkRomanNumber(romanNr);
+        }
         return decimalNr;
     }
 
+    public static boolean getDisableSyntax() {
+        return disableSyntax;
+    }
+
+    public static void setDisableSyntax(boolean disable) {
+        RomanToDecimal.disableSyntax = disable;
+    }
 }
