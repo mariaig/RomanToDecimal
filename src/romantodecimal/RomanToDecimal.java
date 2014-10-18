@@ -48,17 +48,26 @@ public class RomanToDecimal {
     }
 
     private static void checkValidSubstraction(String s1, String s2) throws InvalidNumber {
-        int indexPrevChar = index(convertFromString(s2));
-        int indexCurChar = index(convertFromString(s1));
+        //int indexPrevChar = index(convertFromString(s2));
+        //int indexCurChar = index(convertFromString(s1));
 
-        if ((indexPrevChar % 2) == 0) {
-            if ((indexPrevChar - indexCurChar) > 2) {
-                throw new InvalidNumber();
-            }
-        } else {
-            if ((indexPrevChar - indexCurChar) > 1) {
-                throw new InvalidNumber();
-            }
+        //if ((indexPrevChar % 2) == 0) {
+        //    if ((indexPrevChar - indexCurChar) > 2) {
+        //        throw new InvalidNumber();
+        //    }
+        //} else {
+        //    if ((indexPrevChar - indexCurChar) > 1) {
+        //        throw new InvalidNumber();
+        //    }
+        
+        //prevChar=s2 | currentChar=s1
+        if(s1.equals("I") && (!s2.equals("V")&&!s2.equals("X")) ){
+            throw new InvalidNumber();
+        }else if(s1.equals("X") && (!s2.equals("L")&&!s2.equals("C")) ){
+            throw new InvalidNumber();
+        }
+        else if(s1.equals("C") && (!s2.equals("D")&&!s2.equals("M")) ){
+            throw new InvalidNumber();
         }
     }
 
